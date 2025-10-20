@@ -17,7 +17,7 @@ val mainPackage = "net.guizhanss.slimefuntranslation"
 
 repositories {
     mavenCentral()
-    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    maven(url = "https://repo.papermc.io/repository/maven-public/")
     maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
     maven("https://jitpack.io")
     maven("https://repo.dmulloy2.net/repository/public/")
@@ -25,16 +25,18 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT")
-    compileOnly("com.github.Slimefun:Slimefun4:RC-37")
+    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
+    compileOnly("com.github.SlimeFun-Lab:Slimefun4:3ea21da")
     compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("com.comphenix.protocol:ProtocolLib:5.3.0")
-    implementation("net.guizhanss:guizhanlib-all:2.2.0")
+    implementation("com.github.SlimeFun-Lab:guizhanlib:ad571e34be")
     implementation("org.bstats:bstats-bukkit:3.1.0")
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
 }
 
 tasks.compileJava {

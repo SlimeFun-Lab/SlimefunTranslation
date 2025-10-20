@@ -3,6 +3,8 @@ package net.guizhanss.slimefuntranslation.utils;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -23,8 +25,10 @@ public class SlimefunItemUtils {
         if (item == null || item.getType().isAir() || !item.hasItemMeta()) {
             return null;
         }
-        if (item instanceof SlimefunItemStack sfItemStack) {
-            return sfItemStack.getItemId();
+
+        SlimefunItem sf = SlimefunItem.getByItem(item);
+        if (sf != null) {
+            return sf.getId();
         } else {
             return PersistentDataAPI.getString(item.getItemMeta(), Keys.SLIMEFUN_ITEM);
         }

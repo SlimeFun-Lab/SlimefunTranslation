@@ -53,7 +53,7 @@ public class SearchResultGroup extends FlexItemGroup {
 
     @ParametersAreNonnullByDefault
     public SearchResultGroup(String query) {
-        super(Keys.SEARCH_RESULT_GROUP, new CustomItemStack(
+        super(Keys.SEARCH_RESULT_GROUP, CustomItemStack.create(
             Material.BARRIER,
             "Fake Search Result (by SlimefunTranslation)"
         ));
@@ -88,14 +88,14 @@ public class SearchResultGroup extends FlexItemGroup {
                 slimefunItem.getItemGroup().isAccessible(p) &&
                 isSearchFilterApplicable(p, slimefunItem, searchTerm)
             ) {
-                ItemStack itemstack = new CustomItemStack(slimefunItem.getItem(), meta -> {
+                ItemStack itemstack = CustomItemStack.create(slimefunItem.getItem(), meta -> {
                     meta.setDisplayName(SlimefunTranslation.getTranslationService().getTranslatedItemName(
                         SlimefunTranslation.getUserService().getUser(p),
                         slimefunItem
                     ));
                     ItemGroup itemGroup = slimefunItem.getItemGroup();
                     meta.setLore(Arrays.asList("", ChatColor.DARK_GRAY + "\u21E8 " + ChatColor.WHITE + itemGroup.getDisplayName(p)));
-                    meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_POTION_EFFECTS);
+                    meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ADDITIONAL_TOOLTIP);
                     PersistentDataAPI.setBoolean(meta, Keys.SEARCH_DISPLAY, true);
                 });
 

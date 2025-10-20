@@ -166,9 +166,13 @@ public class FixedItemTranslation implements ItemTranslation {
         // if there is no lore in the original item, lore cannot be translated
         if (meta.hasLore()) {
             var originalItem = sfItem.getItem();
-            if (originalItem instanceof SlimefunItemStack sfItemStack) {
-                var originalLore = sfItemStack.getItemMetaSnapshot().getLore();
-                if (originalLore.isEmpty()) {
+
+            SlimefunItem sf = SlimefunItem.getByItem(originalItem);
+            if (sf != null) {
+                ItemStack template = sf.getItem();
+                var metaTeamplate = template.getItemMeta();
+
+                if (metaTeamplate == null || !metaTeamplate.hasLore() || metaTeamplate.getLore() == null || metaTeamplate.getLore().isEmpty()) {
                     return TranslationStatus.DENIED;
                 }
             } else {

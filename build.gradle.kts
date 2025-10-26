@@ -29,7 +29,7 @@ dependencies {
     compileOnly("com.github.SlimeFun-Lab:Slimefun4:6d5694e")
     compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("com.comphenix.protocol:ProtocolLib:5.3.0")
-    implementation("com.github.SlimeFun-Lab:guizhanlib:ad571e34be")
+    implementation("com.github.SlimeFun-Lab:guizhanlib:94c4abd25b")
     implementation("org.bstats:bstats-bukkit:3.1.0")
 }
 

@@ -4,6 +4,7 @@ plugins {
     id("java")
     id("maven-publish")
     id("com.gradleup.shadow") version "8.3.6"
+    id("java-library")
     id("io.freefair.lombok") version "8.12.1"
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
     id("xyz.jpenilla.run-paper") version "2.3.1"
@@ -56,7 +57,11 @@ tasks.shadowJar {
     doRelocate("net.guizhanss.guizhanlib")
     doRelocate("org.bstats")
     minimize()
-    archiveClassifier = ""
+    archiveClassifier.set("")
+}
+
+tasks.jar {
+    enabled = false
 }
 
 bukkit {
@@ -101,7 +106,8 @@ bukkit {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            from(components["java"])
+            //from(components["java"])
+            artifact(tasks.shadowJar)
         }
     }
 }

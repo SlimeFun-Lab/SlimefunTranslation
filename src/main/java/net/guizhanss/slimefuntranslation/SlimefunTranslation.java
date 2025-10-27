@@ -85,9 +85,8 @@ public final class SlimefunTranslation extends AbstractAddon {
 
         // check if slimefun has set a server default language
         if (Slimefun.getLocalization().getDefaultLanguage() == null) {
-            log(Level.SEVERE, "Slimefun has no default language, this will make SlimefunTranslation not working properly, disabling...");
-            getPluginLoader().disablePlugin(this);
-            return;
+            getLogger().severe("Slimefun has no default language, SlimefunTranslation cannot work.");
+            throw new IllegalStateException("Missing Slimefun default language");
         }
 
         // tags

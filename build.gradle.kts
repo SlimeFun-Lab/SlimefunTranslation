@@ -10,7 +10,7 @@ plugins {
     id("xyz.jpenilla.run-paper") version "2.3.1"
 }
 
-group = "net.guizhanss"
+group = "com.github.SlimeFun-Lab"
 version = "UNOFFICIAL"
 description = "SlimefunTranslation"
 
@@ -108,6 +108,11 @@ publishing {
         create<MavenPublication>("maven") {
             //from(components["java"])
             artifact(tasks.shadowJar)
+            artifactId = "SlimefunTranslation"
         }
     }
+}
+
+tasks.named("publishToMavenLocal") {
+    dependsOn(tasks.shadowJar)
 }
